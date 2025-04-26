@@ -28,8 +28,6 @@ export async function DELETE(_req:NextRequest,{ params }: { params: { id: string
         {
             return NextResponse.json({ message: "Movie not found" }, { status: 404 }as any);
         }
-
-
         await deleteMovie(id);
         return NextResponse.json({ message: "Movie deleted successfully" }, { status: 200 }as any);    }
     catch(error)

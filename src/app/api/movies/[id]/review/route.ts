@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { reviewSchema } from '../../../../../utils/validators/movie.schema.ts';
-import { AddReviewService } from '../../../../service/ReviewService.ts';
+import { AddReviewService, fetchReviewsByMovieIdAndUserId } from '../../../../service/ReviewService.ts';
 
 export async function POST(request: NextRequest,{params}:{params:{id:string}}):Promise<NextResponse> {
     try {
@@ -24,3 +24,8 @@ export async function POST(request: NextRequest,{params}:{params:{id:string}}):P
         return NextResponse.json({ message: "Internal server error" +error}, { status: 201 }as any);
     }    
 }
+
+
+
+
+

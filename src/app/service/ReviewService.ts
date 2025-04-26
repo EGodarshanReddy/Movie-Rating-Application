@@ -16,3 +16,13 @@ export async function AddReviewService(id: string, review: any) {
     const newReview = await addReview(id, review);
     return newReview;
 }
+
+
+
+export async function fetchReviewsByMovieIdAndUserId(id: string,userId: string) {
+    const reviews = await getReviewsByMovieIdandUserId(id, userId);
+    if(!reviews) {
+        return NextResponse.json({ message: "Review not found" }, { status: 404 }as any);
+    }
+    return reviews;
+}
