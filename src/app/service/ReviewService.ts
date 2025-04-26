@@ -47,7 +47,7 @@ export async function deleteReviewSevice(id: string) {
 
 
 export async function getAllReviewsByMovieId(id: string,page: number,size: number) {
-    const reviews = await fetchReviewsByMovieId(id);
+    const reviews = await fetchReviewsByMovieId(id,page,size);
     if(!reviews) {
         return NextResponse.json({ message: "Reviews not found" }, { status: 404 }as any);
     }

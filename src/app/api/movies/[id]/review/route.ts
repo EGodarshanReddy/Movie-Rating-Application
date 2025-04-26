@@ -2,7 +2,7 @@ import { NextRequest,NextResponse } from "next/server";
 import { getAllReviewsByMovieId } from "../../../../service/ReviewService.ts";
 
 
-export async function getAllReviewsbyMovieId(req:NextRequest,{params}:{params:{id:string}}):Promise<NextResponse> {
+export async function GET(req:NextRequest,{params}:{params:{id:string}}):Promise<NextResponse> {
     try {
         const { id } = params;
         const page = parseInt(req.nextUrl.searchParams.get('page') || '1');

@@ -1,6 +1,6 @@
 
 import { NextResponse, NextRequest } from "next/server";
-import { AddReviewService, fetchReviewsByMovieIdAndUserId } from "../../../../../service/ReviewService.ts";
+import { AddReviewService } from "../../../../../service/ReviewService.ts";
 import { reviewSchema } from "../../../../../../utils/validators/movie.schema.ts";
 export async function POST(request: NextRequest,{params}:{params:{id:string,userId:string}}):Promise<NextResponse> {
     try {
