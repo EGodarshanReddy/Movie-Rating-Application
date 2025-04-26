@@ -15,14 +15,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
                 { status: 400 } as any
             );
         }
-
         const { email, password } = parsed.data;
-
-        // Find the user in the database
-
-        const data = await loginService(email, password);
-
-        
+        const data = await loginService(email, password);        
         if(data instanceof NextResponse)
         {
             return data;

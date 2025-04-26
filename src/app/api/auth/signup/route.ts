@@ -22,10 +22,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       const { email, password } = parsed.data;
       console.log("Password",password);
       console.log("type of password is: ",typeof(password));
-      console.log("email",email);
-      console.log("password",password);
       const data=await signupService(email,password);
-      console.log("data",data);
       if(data instanceof NextResponse)
       {return data;}
       else

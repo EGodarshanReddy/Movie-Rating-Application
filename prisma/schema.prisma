@@ -21,6 +21,8 @@ model User {
   role      Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Review Review[]
 }
 
 enum Role {
@@ -28,4 +30,30 @@ enum Role {
   ADMIN
 }
 
+model Movie {
+  id          String     @id @default(uuid())
+  title       String
+  language    String
+  description String
+  genre       String
+  releaseYear Int
+  posterURL   String
+  createdAt   DateTime @default(now())
 
+  Review Review[]
+}
+
+
+
+model Review {
+  id        String   @id @default(uuid())
+  userId    String
+  movieId   String
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+
+  // Optional: Relations (assuming User and Movie tables exist)
+  user  User  @relation(fields: [userId], references: [id])
+  movie Movie @relation(fields: [movieId], references: [id])
+}

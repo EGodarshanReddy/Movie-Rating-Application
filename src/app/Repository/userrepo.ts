@@ -15,10 +15,10 @@ export const findUserByEmail=async(email:string)=>{
 }
 
 
-export const createUser = async function createUser(email: string, password: string) {
+export const createUser = async function createUser(name:string,email: string, password: string) {
   console.log(`Creating user with email: ${email}`);
   const user = await prisma.user.create({
-    data: { name:"Godarshan",email:email, password:password },
+    data: { name:name,email:email, password:password },
   });
   console.log(`User created: ${JSON.stringify(user)}`);
   return user;
