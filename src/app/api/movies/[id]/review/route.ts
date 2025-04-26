@@ -1,31 +1,20 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { reviewSchema } from '../../../../../utils/validators/movie.schema.ts';
-import { AddReviewService, fetchReviewsByMovieIdAndUserId } from '../../../../service/ReviewService.ts';
+import { NextRequest,NextResponse } from "next/server";
+import { getAllReviewsByMovieId } from "../../../../service/ReviewService.ts";
 
-export async function POST(request: NextRequest,{params}:{params:{id:string}}):Promise<NextResponse> {
+
+export async function getAllReviewsbyMovieId(req:NextRequest,{params}:{params:{id:string}}):Promise<NextResponse> {
     try {
         const { id } = params;
-        const review = await request.json();
-        console.log("review",review);
-
-        const isValidReviewData = reviewSchema.safeParse(review);
-        
-        if (!isValidReviewData.success) {
-            return NextResponse.json({ errors: isValidReviewData.error.flatten().fieldErrors }, { status: 400 }as any);
+        const page = parseInt(req.nextUrl.searchParams.get('page') || '1');
+        const limit = parseInt(req.nextUrl.searchParams.get('limit') || '10');
+        const reviews = await getAllReviewsByMovieId(id,page,limit);
+        if(!reviews)
+        {
+            return NextResponse.json({ message: "Reviews not found" }, { status: 404 }as any);
         }
-        const addReview = await AddReviewService(id,review)
-        if (addReview instanceof NextResponse) {
-            return addReview;
-        }
-        return NextResponse.json({ message: 'Review added successfully' }, { status: 201 }as any);
-        
+        return NextResponse.json({ message: "Reviews fetched successfully", data: reviews }, { status: 200 }as any);
     } catch (error) {
-        console.error('Error adding review:', error);
-        return NextResponse.json({ message: "Internal server error" +error}, { status: 201 }as any);
-    }    
+        console.log("error",error);
+        return NextResponse.json({ message: "Internal server error"+error }, { status: 500 }as any);
+    }
 }
-
-
-
-
-
