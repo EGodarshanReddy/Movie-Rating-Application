@@ -4,7 +4,7 @@ import { createUser, findUserByEmail } from "../Repository/userrepo.ts";
 import { hashPassword } from "../../lib/auth.ts";
 
 
-export async function signupService(email:string,password:string)
+export async function signupService(name:string,email:string,password:string)
 {
     const user=await findUserByEmail(email);    
     if(user)
@@ -12,6 +12,6 @@ export async function signupService(email:string,password:string)
         return NextResponse.json({ message: 'User already exists' }, { status: 400 }as any);
     }    
     const hashedPassword=await hashPassword(password);
-    const data=await createUser(email,hashedPassword);
+    const data=await createUser(name,email,hashedPassword);
     return data;        
 }

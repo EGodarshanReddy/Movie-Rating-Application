@@ -27,7 +27,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         }
         return NextResponse.json({ message: 'Login failed' }, { status:400 } as any);
 
-
         // Compare the provided password with the stored hashed password
 
     } catch (error) {

@@ -27,6 +27,8 @@ model User {
   Watchlist Watchlist[]
 
   Favorite Favorite[]
+
+  WatchedHistory WatchedHistory[]
 }
 
 enum Role {
@@ -49,6 +51,8 @@ model Movie {
   Watchlist Watchlist[]
 
   Favorite Favorite[]
+
+  WatchedHistory WatchedHistory[]
 }
 
 
@@ -88,4 +92,17 @@ model Favorite {
   movie   Movie  @relation(fields: [movieId], references: [id])
 
   @@unique([userId, movieId]) // Optional: A user can add a movie only once to favorites
+}
+
+
+model WatchedHistory {
+  id        String   @id @default(uuid())
+  userId    String
+  movieId   String
+  watchedAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+  movie     Movie    @relation(fields: [movieId], references: [id])
+
+  @@unique([userId, movieId]) // Optional: So user can't mark same movie as watched multiple times
 }

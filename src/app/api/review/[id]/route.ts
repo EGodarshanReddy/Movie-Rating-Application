@@ -47,16 +47,14 @@ export async function PUT(request: NextRequest,{params}:{params:{id:string}}):Pr
         if (!isValidReviewData.success) {
             return NextResponse.json({ errors: isValidReviewData.error.flatten().fieldErrors }, { status: 400 }as any);
         }
-        const addReview = await updateReviewService(id,review)
-        if (addReview instanceof NextResponse) {
-            return addReview;
+        const updateReview = await updateReviewService(id,review)
+        if (updateReview instanceof NextResponse) {
+            return updateReview;
         }
-        return NextResponse.json({ message: 'Review added successfully' }, { status: 201 }as any);
+        return NextResponse.json({ message: 'Review added successfully' ,updateReview}, { status: 201 }as any);
         
     } catch (error) {
         console.error('Error adding review:', error);
         return NextResponse.json({ message: "Internal server error" +error}, { status: 201 }as any);
     }
 }
-
-

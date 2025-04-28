@@ -17,7 +17,7 @@ export async function POST(request: NextRequest,{params}:{params:{id:string,user
         if (addReview instanceof NextResponse) {
             return addReview;
         }
-        return NextResponse.json({ message: 'Review added successfully' }, { status: 201 }as any);
+        return NextResponse.json({ message: 'Review added successfully',addReview }, { status: 201 }as any);
         
     } catch (error) {
         console.error('Error adding review:', error);

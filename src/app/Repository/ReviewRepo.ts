@@ -9,6 +9,9 @@ export async function addReview(movieId: string,userId: string, review: Omit<Rev
         userId,
         ...review,
       },
+      select: {
+        id: true,
+      }
     });
   }
 
@@ -64,6 +67,11 @@ export async function updateReview(id: string, review: Partial<Review> & Omit<Re
     },
     data: {
       ...review,
+    },
+    select: {
+      id: true,
+      rating: true,
+      comment: true,      
     },
   });
 }
