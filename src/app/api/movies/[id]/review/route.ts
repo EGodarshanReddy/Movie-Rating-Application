@@ -1,5 +1,6 @@
+import { getAllReviewsByMovieId } from "@shared/app/service/ReviewService";
 import { NextRequest,NextResponse } from "next/server";
-import { getAllReviewsByMovieId } from "../../../../service/ReviewService.ts";
+
 
 
 export async function GET(req:NextRequest,{params}:{params:{id:string}}):Promise<NextResponse> {

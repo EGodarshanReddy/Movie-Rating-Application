@@ -37,14 +37,15 @@ enum Role {
 }
 
 model Movie {
-  id          String     @id @default(uuid())
-  title       String
-  language    String
-  description String
-  genre       String
-  releaseYear Int
-  posterURL   String
-  createdAt   DateTime @default(now())
+  id           String     @id @default(uuid())
+  title        String
+  language     String
+  description  String
+  genre        String
+  releaseYear  Int
+  posterURL    String
+  createdAt    DateTime @default(now())
+  watchedCount BigInt @default(0)
 
   Review Review[]
 

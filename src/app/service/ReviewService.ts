@@ -1,8 +1,8 @@
-import { fetchMovieById } from "../Repository/MovieRepo.ts";
+import { fetchMovieById } from "../Repository/MovieRepo";
 
 
 import { NextResponse } from "next/server";
-import { addReview, deleteReviewByid, fetchReviewsByMovieId, getReviewsByMovieIdandUserId, getReviewsByReviewId, updateReview } from "../Repository/ReviewRepo.ts";
+import { addReview, deleteReviewByid, fetchReviewsByMovieId, getReviewsByMovieIdandUserId, getReviewsByReviewId, updateReview } from "../Repository/ReviewRepo";
 import { Review } from "@prisma/client";
 
 export async function AddReviewService(id: string,userId: string, review: any) {

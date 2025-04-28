@@ -1,6 +1,6 @@
-import { Movie } from "../../utils/validators/interfaces.ts";
+import { Movie } from "../../utils/validators/interfaces";
 import { NextResponse } from "next/server";
-import { addMovie, deleteMovieById, fetchAllMovies, fetchMovieById, findMovieByNameAndLanguage } from "../Repository/MovieRepo.ts";
+import { addMovie, deleteMovieById, fetchAllMovies, fetchMovieById, findMovieByNameAndLanguage } from "../Repository/MovieRepo";
 
 
 export async function AddMovieService(movie:Movie) 

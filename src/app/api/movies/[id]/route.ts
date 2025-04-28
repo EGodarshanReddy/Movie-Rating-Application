@@ -1,6 +1,6 @@
+import { deleteMovie, getMovie } from "@shared/app/service/moviesservice";
 import { NextRequest, NextResponse } from "next/server";
-import { getMovie } from "../../../service/moviesservice.ts";
-import { deleteMovie } from "../../../service/moviesservice.ts";
+
 
 export async function GET(_req:NextRequest,{ params }: { params: { id: string } }) {
     try{

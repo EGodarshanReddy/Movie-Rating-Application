@@ -1,7 +1,8 @@
+import { Movie } from '@prisma/client';
+import { AddMovieService } from '@shared/app/service/moviesservice';
+import { movieSchema } from '@shared/utils/validators/movie.schema';
 import { NextResponse,NextRequest } from 'next/server';
-import { Movie } from '../../../../utils/validators/interfaces.ts';
-import { movieSchema } from '../../../../utils/validators/movie.schema.ts';
-import { AddMovieService } from '../../../service/moviesservice.ts';
+
 
 export async function POST(request: NextRequest):Promise<NextResponse> {
     try {

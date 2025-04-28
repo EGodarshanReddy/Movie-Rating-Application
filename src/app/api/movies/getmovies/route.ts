@@ -1,5 +1,6 @@
+import { getAllMovies } from '@shared/app/service/moviesservice';
 import { NextRequest, NextResponse } from 'next/server';
-import { getAllMovies } from '../../../service/moviesservice.ts';
+
 
 
 

@@ -1,6 +1,8 @@
-import { fetchMovieById } from "../Repository/MovieRepo.ts";
+
 import {NextResponse} from "next/server"
-import { addWatchList, fetchWatchListByUserIdAndMovieId } from "../Repository/WatchListRepo.ts";
+import { addWatchList, fetchWatchListByUserIdAndMovieId } from "../Repository/WatchListRepo";
+import { fetchMovieById } from "../Repository/MovieRepo";
+
 
 export async function addWatchListService(movieId:string,userId:string) 
 {
@@ -13,7 +15,7 @@ export async function addWatchListService(movieId:string,userId:string)
     
     if(WatchList)
     {
-        return NextResponse.json({message:"movie is already added in watch list"},{status:400}as any)
+        return NextResponse.json({message:"movie is already added in watch list"},{status:400})
     }
 
     

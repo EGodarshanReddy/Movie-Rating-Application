@@ -1,5 +1,6 @@
+import { addWatchListService } from "@shared/app/service/WatchListservice";
 import {NextRequest,NextResponse} from "next/server";
-import { addWatchListService } from "../../../../../service/WatchListservice.ts";
+
 
 export async function POST(_req:NextRequest,{params}:{params:{id:string,userId:string}}) :Promise<NextResponse>
 {

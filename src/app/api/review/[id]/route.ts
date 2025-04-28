@@ -1,6 +1,7 @@
+import { deleteReviewSevice, fetchReviewsByMovieIdAndUserId, updateReviewService } from "@shared/app/service/ReviewService";
+import { reviewSchema } from "@shared/utils/validators/movie.schema";
 import { NextResponse, NextRequest } from "next/server";
-import { deleteReviewSevice, fetchReviewsByMovieIdAndUserId, updateReviewService } from "../../../service/ReviewService.ts";
-import { reviewSchema } from "../../../../utils/validators/movie.schema.ts";
+
 
 
 

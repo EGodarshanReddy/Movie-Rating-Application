@@ -1,6 +1,7 @@
+import { signupService } from "@shared/app/service/sinupservice";
+import { SignupSchema } from "@shared/utils/validators/user.schema";
 import { NextRequest, NextResponse } from "next/server";
-import { SignupSchema } from "../../../../utils/validators/user.schema.ts";
-import { signupService } from "../../../service/sinupservice.ts";
+
 
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
