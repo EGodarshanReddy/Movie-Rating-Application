@@ -14,7 +14,15 @@ export const findMovieByNameAndLanguage = async (name: string, language: string)
 
 export const addMovie=async (movie: Movie) => {
     const newMovie = await prisma.movie.create({
-        data: movie
+        data: movie,
+        select: {
+          id: true,
+          title: true,
+          language: true,
+          genre: false,
+          releaseYear: false,
+          posterURL: false,
+        },
     });
     return newMovie;
 }

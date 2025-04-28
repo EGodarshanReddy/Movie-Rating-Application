@@ -55,3 +55,15 @@ export async function addReview(movieId: string,userId: string, review: Omit<Rev
   });
   return reviews;
 }
+
+
+export async function updateReview(id: string, review: Partial<Review> & Omit<Review, 'id' | 'createdAt' | 'movieId'|'userId' >) {
+  return await prisma.review.update({
+    where: {
+      id,
+    },
+    data: {
+      ...review,
+    },
+  });
+}

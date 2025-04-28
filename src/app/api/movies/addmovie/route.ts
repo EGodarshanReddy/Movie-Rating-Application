@@ -16,7 +16,7 @@ export async function POST(request: NextRequest):Promise<NextResponse> {
         if (addMovie instanceof NextResponse) {
             return addMovie;
         }
-        return NextResponse.json({ message: 'Movie added successfully' }, { status: 201 }as any);
+        return NextResponse.json({ message: 'Movie added successfully', addMovie }, { status: 201 }as any);
         
     } catch (error) {
         console.error('Error adding movie:', error);

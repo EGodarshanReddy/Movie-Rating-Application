@@ -2,7 +2,8 @@ import { fetchMovieById } from "../Repository/MovieRepo.ts";
 
 
 import { NextResponse } from "next/server";
-import { addReview, deleteReviewByid, fetchReviewsByMovieId, getReviewsByMovieIdandUserId, getReviewsByReviewId } from "../Repository/ReviewRepo.ts";
+import { addReview, deleteReviewByid, fetchReviewsByMovieId, getReviewsByMovieIdandUserId, getReviewsByReviewId, updateReview } from "../Repository/ReviewRepo.ts";
+import { Review } from "@prisma/client";
 
 export async function AddReviewService(id: string,userId: string, review: any) {
     const movie = await fetchMovieById(id);
@@ -52,4 +53,17 @@ export async function getAllReviewsByMovieId(id: string,page: number,size: numbe
         return NextResponse.json({ message: "Reviews not found" }, { status: 404 }as any);
     }
     return reviews;
+}
+
+
+
+
+export async function updateReviewService(id: string, review: Partial<Review>& Omit<Review, 'id' | 'createdAt' | 'movieId'|'userId' >) {  
+
+    const reviews = await getReviewsByReviewId(id);
+    if(!reviews) {
+        return NextResponse.json({ message: "Review not found" }, { status: 404 }as any);
+    }
+    return await updateReview(id,review);
+    
 }

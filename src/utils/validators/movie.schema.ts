@@ -11,9 +11,9 @@ export const movieSchema = z.object({
 
 
 export const reviewSchema = z.object({
-    userId: z.string().uuid({ message: "Invalid userId format" }),
-    movieId: z.string().uuid({ message: "Invalid movieId format" }),
+    // userId: z.string().uuid({ message: "Invalid userId format" }),
+    // movieId: z.string().uuid({ message: "Invalid movieId format" }),
     rating: z.number().min(1, { message: "Rating must be at least 1" }).max(5, { message: "Rating cannot be more than 5" }),
     comment: z.string().optional(),
-    createdAt: z.date().optional(), // optional because Prisma will default it to now()
+    // createdAt: z.date().optional(), // optional because Prisma will default it to now()
   });

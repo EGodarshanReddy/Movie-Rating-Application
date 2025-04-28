@@ -24,3 +24,6 @@ export async function POST(request: NextRequest,{params}:{params:{id:string,user
         return NextResponse.json({ message: "Internal server error" +error}, { status: 201 }as any);
     }    
 }
+
+
+
