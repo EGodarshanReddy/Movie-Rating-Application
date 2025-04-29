@@ -1,5 +1,5 @@
 import { deleteWatchList } from "@shared/app/Repository/WatchListRepo";
-import { addWatchListService } from "@shared/app/service/WatchListservice";
+import { addWatchListService, deleteMovieFromWatchListService } from "@shared/app/service/WatchListservice";
 import {NextRequest,NextResponse} from "next/server";
 
 
@@ -31,7 +31,7 @@ export async function DELETE(_req:NextRequest,{params}:{params:{id:string,userId
 
         const {id,userId}=params;
 
-        const deletemovieFromWatchList= await deleteWatchList(id,userId)
+        const deletemovieFromWatchList= await deleteMovieFromWatchListService(id,userId)
         if(deletemovieFromWatchList instanceof NextResponse)
         {
             return deletemovieFromWatchList;
@@ -46,3 +46,4 @@ export async function DELETE(_req:NextRequest,{params}:{params:{id:string,userId
     }
 
 }
+

@@ -1,7 +1,8 @@
 
 import {NextResponse} from "next/server"
-import { addWatchList, deleteWatchList,fetchWatchListByUserIdAndMovieId } from "../Repository/WatchListRepo";
+import { addWatchList, deleteALLMovieFromWatchListByUserId, deleteWatchList,fetchWatchListByUserIdAndMovieId, getWatchListByUserId } from "../Repository/WatchListRepo";
 import { fetchMovieById } from "../Repository/MovieRepo";
+import { isUserExists } from "../Repository/userrepo";
 
 
 export async function addWatchListService(movieId:string,userId:string) 
@@ -33,4 +34,28 @@ export async function deleteMovieFromWatchListService(movieId:string,userId:stri
     }
     const deletemovieFromWatchList=await deleteWatchList(movieId,userId);
     return deletemovieFromWatchList;
+}
+
+
+export async function getAllWatchListByUserId(userId:string)
+{
+    const user= await isUserExists(userId);
+    if(user===false)
+    {
+        return NextResponse.json({message:"user not found"},{status:400}as any)
+    }
+    const watchList=await getWatchListByUserId(userId);
+    return watchList;
+}
+
+
+export async function deleteALLMovieFromWatchListService(userId:string)
+{
+    const user= await isUserExists(userId);
+    if(user===false)
+    {
+        return NextResponse.json({message:"user not found"},{status:400}as any)
+    }
+    const deleteALLMovieFromWatchList=await deleteALLMovieFromWatchListByUserId(userId);
+    return deleteALLMovieFromWatchList;
 }

@@ -44,3 +44,23 @@ export async function fetchWatchListByUserIdAndMovieId(movieId: string, userId: 
     )
     return fetchWatchList;
 }
+
+export async function getWatchListByUserId(userId: string) {
+    return await prisma.watchlist.findMany({
+      where: {
+        userId: userId,
+      },
+      include: {
+        movie: true, 
+      },
+    });
+  }
+  
+
+  export async function deleteALLMovieFromWatchListByUserId(userId: string) {
+    return await prisma.watchlist.deleteMany({
+      where: {
+        userId: userId,
+      },
+    });
+  }

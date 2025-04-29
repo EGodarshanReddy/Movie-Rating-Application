@@ -45,7 +45,7 @@ model Movie {
   releaseYear  Int
   posterURL    String
   createdAt    DateTime @default(now())
-  watchedCount BigInt @default(0)
+  watchedCount Int @default(0)
 
   Review Review[]
 

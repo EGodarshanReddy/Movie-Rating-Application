@@ -23,3 +23,11 @@ export const createUser = async function createUser(name:string,email: string, p
   console.log(`User created: ${JSON.stringify(user)}`);
   return user;
 }
+export async function isUserExists(userId: string): Promise<boolean> {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { id: true }
+  });
+
+  return !!user; // returns true if user exists, false if not
+}
