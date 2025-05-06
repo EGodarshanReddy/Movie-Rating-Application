@@ -3,9 +3,10 @@ import { AddReviewService, fetchReviewsByMovieIdAndUserId } from "@shared/app/se
 import { reviewSchema } from "@shared/utils/validators/movie.schema";
 import { NextResponse, NextRequest } from "next/server";
 
-export async function POST(request: NextRequest,{params}:{params:{id:string,userId:string}}):Promise<NextResponse> {
+export async function POST(request: NextRequest,{params}:
+    {params:Promise<{id:string,userId:string}>}):Promise<NextResponse> {
     try {
-        const { id,userId } = params;
+        const { id,userId } =await params;
         const review = await request.json();
         console.log("review",review);
 
