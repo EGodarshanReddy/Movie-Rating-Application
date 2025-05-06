@@ -28,6 +28,8 @@ export async function POST(request: NextRequest,{params}:{params:{id:string,user
 
 
 export async function GET(_req:NextRequest,{params}:{params:{id:string,userId:string}}):Promise<NextResponse> {
+
+    
     try {
         const { id,userId } = params;
         const reviews = await fetchReviewsByMovieIdAndUserId(id,userId);
