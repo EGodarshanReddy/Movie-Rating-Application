@@ -4,9 +4,12 @@ import { reviewSchema } from "@shared/utils/validators/movie.schema";
 import { NextResponse, NextRequest } from "next/server";
 
 export async function POST(request: NextRequest,{params}:
-    {params:Promise<{id:string,userId:string}>}):Promise<NextResponse> {
+    {params:{id:string,userId:string}}):Promise<NextResponse> {
     try {
-        const { id,userId } =await params;
+        const ids= await params;
+        const userId  = ids.userId;
+        const id = ids.id;
+        // const { id,userId } =await params;
         const review = await request.json();
         console.log("review",review);
 
@@ -28,9 +31,12 @@ export async function POST(request: NextRequest,{params}:
 }
 
 
-export async function GET(req:NextRequest,{params}:{params:{id:string,userId:string}}):Promise<NextResponse> {
+export async function GET(req:NextRequest,{params}:
+    {params:{id:string,userId:string}}):Promise<NextResponse> {
     try {
-        const { id,userId } = params;
+        const ids= await params;
+        const userId  = ids.userId;
+        const id = ids.id;
         const reviews = await fetchReviewsByMovieIdAndUserId(id,userId);
        if(reviews instanceof NextResponse)
        {
@@ -42,5 +48,4 @@ export async function GET(req:NextRequest,{params}:{params:{id:string,userId:str
         return NextResponse.json({ message: "Internal server error"+error }, { status: 500 }as any);
     }
 }
-
 
