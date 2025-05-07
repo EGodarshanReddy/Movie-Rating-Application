@@ -3,7 +3,7 @@ import { AddMovieService } from '@shared/app/service/moviesservice';
 import { movieSchema } from '@shared/utils/validators/movie.schema';
 import { NextResponse,NextRequest } from 'next/server';
 
-
+//comment
 export async function POST(request: NextRequest):Promise<NextResponse> {
     try {
         const movie:Movie = await request.json();
