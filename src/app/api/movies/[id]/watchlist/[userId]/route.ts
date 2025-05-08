@@ -3,11 +3,11 @@ import { addWatchListService, deleteMovieFromWatchListService } from "@shared/ap
 import {NextRequest,NextResponse} from "next/server";
 
 
-export async function POST(_req:NextRequest,{params}:{params:{id:string,userId:string}}) :Promise<NextResponse>
+export async function POST(_req:NextRequest,{params}:{params:Promise<{id:string,userId:string}>}) :Promise<NextResponse>
 {
     try{
 
-        const {id,userId}=params;
+        const {id,userId}= await params;
 
         const addwatchList= await addWatchListService(id,userId)
         if(addwatchList instanceof NextResponse)
@@ -25,11 +25,11 @@ export async function POST(_req:NextRequest,{params}:{params:{id:string,userId:s
 }
 
 
-export async function DELETE(_req:NextRequest,{params}:{params:{id:string,userId:string}}) :Promise<NextResponse>
+export async function DELETE(_req:NextRequest,{params}:{params:Promise<{id:string,userId:string}>}) :Promise<NextResponse>
 {
     try{
 
-        const {id,userId}=params;
+        const {id,userId}= await params;
 
         const deletemovieFromWatchList= await deleteMovieFromWatchListService(id,userId)
         if(deletemovieFromWatchList instanceof NextResponse)

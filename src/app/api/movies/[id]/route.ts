@@ -2,9 +2,9 @@ import { deleteMovie, getMovie } from "@shared/app/service/moviesservice";
 import { NextRequest, NextResponse } from "next/server";
 
 
-export async function GET(_req:NextRequest,{ params }: { params: { id: string } }) {
+export async function GET(_req:NextRequest,{ params }: { params:Promise< { id: string }> }) {
     try{
-        const { id } = params;
+        const { id } =await  params;
 
         const movie = await getMovie(id);
         if(!movie)
@@ -20,9 +20,9 @@ export async function GET(_req:NextRequest,{ params }: { params: { id: string } 
 }
 
 
-export async function DELETE(_req:NextRequest,{ params }: { params: { id: string } }) {
+export async function DELETE(_req:NextRequest,{ params }: { params: Promise<{ id: string } >}) {
     try{
-        const { id } = params;
+        const { id } = await params;
         const movie = await getMovie(id);
         if(!movie)
         {

@@ -8,9 +8,9 @@ import { NextResponse, NextRequest } from "next/server";
 
 
 
-export async function DELETE(_req:NextRequest,{ params }: { params: { id: string } }) {
+export async function DELETE(_req:NextRequest,{ params }: { params:Promise< { id: string } > } ) {
     try{
-        const { id } = params;
+        const { id } =  await params;
         const deleteReviews = await await deleteReviewSevice(id);
         if(deleteReviews instanceof NextResponse)
         {
@@ -25,9 +25,9 @@ export async function DELETE(_req:NextRequest,{ params }: { params: { id: string
     }
 }
 
-export async function PUT(request: NextRequest,{params}:{params:{id:string}}):Promise<NextResponse> {
+export async function PUT(request: NextRequest,{params}:{params:Promise< { id: string } >}):Promise<NextResponse> {
     try {
-        const { id} = params;
+        const { id} = await params;
         const review = await request.json();
         console.log("review",review);
         const isValidReviewData = reviewSchema.safeParse(review);

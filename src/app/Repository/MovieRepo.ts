@@ -1,5 +1,6 @@
 import  {PrismaClient}  from "@prisma/client";
-import { Movie } from "../../utils/validators/interfaces.ts";
+import { Movie } from "@shared/utils/validators/interfaces";
+
 const prisma= new PrismaClient();
 
 export const findMovieByNameAndLanguage = async (name: string, language: string) => {

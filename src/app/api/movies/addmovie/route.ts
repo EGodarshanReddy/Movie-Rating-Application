@@ -1,5 +1,6 @@
-import { Movie } from '@prisma/client';
+
 import { AddMovieService } from '@shared/app/service/moviesservice';
+import { Movie } from '@shared/utils/validators/interfaces';
 import { movieSchema } from '@shared/utils/validators/movie.schema';
 import { NextResponse,NextRequest } from 'next/server';
 

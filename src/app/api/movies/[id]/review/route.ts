@@ -3,9 +3,9 @@ import { NextRequest,NextResponse } from "next/server";
 
 
 
-export async function GET(req:NextRequest,{params}:{params:{id:string}}):Promise<NextResponse> {
+export async function GET(req:NextRequest,{params}:{params:Promise<{id:string}>}):Promise<NextResponse> {
     try {
-        const { id } = params;
+        const { id } = await params;
         const page = parseInt(req.nextUrl.searchParams.get('page') || '1');
         const limit = parseInt(req.nextUrl.searchParams.get('limit') || '10');
         const reviews = await getAllReviewsByMovieId(id,page,limit);

@@ -4,7 +4,7 @@ import { reviewSchema } from "@shared/utils/validators/movie.schema";
 import { NextResponse, NextRequest } from "next/server";
 
 export async function POST(request: NextRequest,{params}:
-    {params:{id:string,userId:string}}):Promise<NextResponse> {
+    {params:Promise<{id:string,userId:string}>}):Promise<NextResponse> {
     try {
         const ids= await params;
         const userId  = ids.userId;
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest,{params}:
 
 
 export async function GET(req:NextRequest,{params}:
-    {params:{id:string,userId:string}}):Promise<NextResponse> {
+    {params:Promise<{id:string,userId:string}>}):Promise<NextResponse> {
     try {
         const ids= await params;
         const userId  = ids.userId;

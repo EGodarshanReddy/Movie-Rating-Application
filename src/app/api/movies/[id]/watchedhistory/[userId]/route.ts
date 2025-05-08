@@ -1,9 +1,9 @@
 import { createWatchedList } from "@shared/app/service/watchedHistoryService";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req:NextRequest,{params}:{params:{id:string,userId:string}}):Promise<NextResponse> {
+export async function POST(req:NextRequest,{params}:{params:Promise<{id:string,userId:string}>}):Promise<NextResponse> {
     try {
-        const { id,userId } = params;      
+        const { id,userId } = await params;      
 
         const watchList= await createWatchedList(id,userId);
         if(watchList instanceof NextResponse)

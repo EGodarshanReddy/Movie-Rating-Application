@@ -1,11 +1,11 @@
 import { deleteALLMovieFromWatchListService, deleteMovieFromWatchListService, getAllWatchListByUserId } from "@shared/app/service/WatchListservice";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(_req:NextRequest,{params}:{params:{userId:string}}) :Promise<NextResponse>
+export async function GET(_req:NextRequest,{params}:{params:Promise<{userId:string}>}) :Promise<NextResponse>
 {
     try{
 
-        const {userId}=params;
+        const {userId}= await params;
 
        const watchList= await getAllWatchListByUserId(userId);
        if(watchList instanceof NextResponse)
@@ -22,10 +22,10 @@ export async function GET(_req:NextRequest,{params}:{params:{userId:string}}) :P
 }}  
 
 
-export async function DELETE(_req:NextRequest,{params}:{params:{userId:string}}) :Promise<NextResponse>
+export async function DELETE(_req:NextRequest,{params}:{params:Promise<{userId:string}>}) :Promise<NextResponse>
 {
     try{
-        const {userId}=params;
+        const {userId}= await params;
         const deletemovieFromWatchList= await deleteALLMovieFromWatchListService(userId)
         if(deletemovieFromWatchList instanceof NextResponse)
         {
