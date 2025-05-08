@@ -12,3 +12,101 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+<<<<<<< HEAD
+=======
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  avatar    String?  // URL to profile image
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Review Review[]
+
+  Watchlist Watchlist[]
+
+  Favorite Favorite[]
+
+  WatchedHistory WatchedHistory[]
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Movie {
+  id           String     @id @default(uuid())
+  title        String
+  language     String
+  description  String
+  genre        String
+  releaseYear  Int
+  posterURL    String
+  createdAt    DateTime @default(now())
+  watchedCount Int @default(0)
+
+  Review Review[]
+
+  Watchlist Watchlist[]
+
+  Favorite Favorite[]
+
+  WatchedHistory WatchedHistory[]
+}
+
+
+
+model Review {
+  id        String   @id @default(uuid())
+  userId    String
+  movieId   String
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+
+  // Optional: Relations (assuming User and Movie tables exist)
+  user  User  @relation(fields: [userId], references: [id])
+  movie Movie @relation(fields: [movieId], references: [id])
+}
+
+
+
+model Watchlist {
+  id      String @id @default(uuid())
+  userId  String
+  movieId String
+
+  user    User   @relation(fields: [userId], references: [id])
+  movie   Movie  @relation(fields: [movieId], references: [id])
+
+  @@unique([userId, movieId]) // Optional: A user can add a movie only once to watchlist
+}
+
+model Favorite {
+  id      String @id @default(uuid())
+  userId  String
+  movieId String
+
+  user    User   @relation(fields: [userId], references: [id])
+  movie   Movie  @relation(fields: [movieId], references: [id])
+
+  @@unique([userId, movieId]) // Optional: A user can add a movie only once to favorites
+}
+
+
+model WatchedHistory {
+  id        String   @id @default(uuid())
+  userId    String
+  movieId   String
+  watchedAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+  movie     Movie    @relation(fields: [movieId], references: [id])
+
+  @@unique([userId, movieId]) // Optional: So user can't mark same movie as watched multiple times
+}
+>>>>>>> ff74470fb3ea6f4e845e112d2182f85927c238f1
